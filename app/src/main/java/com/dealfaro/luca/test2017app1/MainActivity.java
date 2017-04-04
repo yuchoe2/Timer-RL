@@ -34,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
         displayTime();
     };
 
+    public void onReset(View v) {
+        seconds = 0;
+        displayTime();
+    }
+
     // Updates the time display.
     private void displayTime() {
         TextView v = (TextView) findViewById(R.id.display);
