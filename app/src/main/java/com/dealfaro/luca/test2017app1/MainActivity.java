@@ -1,20 +1,30 @@
 package com.dealfaro.luca.test2017app1;
 
 import android.app.ActionBar;
+import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import static android.R.attr.max;
+
 public class MainActivity extends AppCompatActivity {
+
+    static final private String LOG_TAG = "test2017app1";
 
     // Counter for the number of seconds.
     private int seconds = 0;
 
+    // Countdown timer.
+    private CountDownTimer timer = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
     }
 
@@ -36,11 +46,48 @@ public class MainActivity extends AppCompatActivity {
 
     public void onReset(View v) {
         seconds = 0;
+        cancelTimer();
         displayTime();
+    }
+
+    public void onClickStart(View v) {
+        if (seconds == 0) {
+            cancelTimer();
+        }
+        if (timer == null) {
+            // We create a new timer.
+            timer = new CountDownTimer(seconds * 1000, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    Log.d(LOG_TAG, "Tick at " + millisUntilFinished);
+                    seconds = Math.max(0, seconds - 1);
+                    displayTime();
+                }
+
+                @Override
+                public void onFinish() {
+                    seconds = 0;
+                    displayTime();
+                }
+            };
+            timer.start();
+        }
+    }
+
+    public void onClickStop(View v) {
+        cancelTimer();
+    }
+
+    private void cancelTimer() {
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
     }
 
     // Updates the time display.
     private void displayTime() {
+        Log.d(LOG_TAG, "Displaying time " + seconds);
         TextView v = (TextView) findViewById(R.id.display);
         int m = seconds / 60;
         int s = seconds % 60;
