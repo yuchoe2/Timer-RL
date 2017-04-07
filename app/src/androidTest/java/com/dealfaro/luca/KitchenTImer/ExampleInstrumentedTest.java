@@ -1,4 +1,4 @@
-package com.dealfaro.luca.test2017app1;
+package com.dealfaro.luca.KitchenTImer;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -1,15 +1,12 @@
-package com.dealfaro.luca.test2017app1;
+package com.dealfaro.luca.KitchenTImer;
 
-import android.app.ActionBar;
 import android.os.CountDownTimer;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
-
-import static android.R.attr.max;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -67,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onFinish() {
                     seconds = 0;
+                    timer = null;
                     displayTime();
                 }
             };
@@ -92,6 +90,11 @@ public class MainActivity extends AppCompatActivity {
         int m = seconds / 60;
         int s = seconds % 60;
         v.setText(String.format("%d:%02d", m, s));
+        // Manages the buttons.
+        Button stopButton = (Button) findViewById(R.id.button_stop);
+        Button startButton = (Button) findViewById(R.id.button_start);
+        startButton.setEnabled(timer == null && seconds > 0);
+        stopButton.setEnabled(timer != null && seconds > 0);
     }
 
 
