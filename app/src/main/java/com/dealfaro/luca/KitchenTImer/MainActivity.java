@@ -18,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
     // Countdown timer.
     private CountDownTimer timer = null;
 
+    // One second.  We use Mickey Mouse time.
+    private static final int ONE_SECOND_IN_MILLIS = 100;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if (timer == null) {
             // We create a new timer.
-            timer = new CountDownTimer(seconds * 1000, 1000) {
+            timer = new CountDownTimer(seconds * ONE_SECOND_IN_MILLIS, ONE_SECOND_IN_MILLIS) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     Log.d(LOG_TAG, "Tick at " + millisUntilFinished);
