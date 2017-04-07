@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickStop(View v) {
         cancelTimer();
+        displayTime();
     }
 
     private void cancelTimer() {
