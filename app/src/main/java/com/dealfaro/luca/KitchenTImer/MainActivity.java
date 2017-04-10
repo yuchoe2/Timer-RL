@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         if (timer == null) {
             // We create a new timer.
             timer = new CountDownTimer(seconds * ONE_SECOND_IN_MILLIS, ONE_SECOND_IN_MILLIS) {
+             //get timer and put it in buttons
+
                 @Override
                 public void onTick(long millisUntilFinished) {
                     Log.d(LOG_TAG, "Tick at " + millisUntilFinished);
